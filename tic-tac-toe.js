@@ -63,7 +63,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
   // don't append image or alternate turns
   board.addEventListener("click", (event) => {
       // if square is already occupied
-      if (!event.target.src) {
+      console.log(boardArray.length)
+      if (!event.target.src || !boardArray.length) {
           addImg(event);
         }
         // set a variable to equal its id at that position
@@ -83,6 +84,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
 
         findWinner()
+        noMoreClicks();
     });
 
     function findWinner() {
@@ -112,6 +114,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
         } else if(boardArray[2] === boardArray[4] && boardArray[4] === boardArray[6] && boardArray[6] !== '') {
             header.innerHTML = `The winner is.....${boardArray[2]}`
+        }
+    }
+
+    function noMoreClicks() {
+        if (!header.innerHTML) {
+            boardArray = [];
+            console.log('hey')
         }
     }
 });
