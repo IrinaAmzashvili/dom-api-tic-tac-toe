@@ -113,7 +113,5 @@ window.addEventListener("DOMContentLoaded", (event) => {
         } else if(boardArray[2] === boardArray[4] && boardArray[4] === boardArray[6] && boardArray[6] !== '') {
             header.innerHTML = `The winner is.....${boardArray[2]}`
         }
-        board.setAttribute('disabled', true)
     }
-
 });
