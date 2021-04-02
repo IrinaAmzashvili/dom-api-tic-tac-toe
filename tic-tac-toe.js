@@ -44,5 +44,18 @@ function addImg(event) {
     })
 
 
+    // understand - game Status
+        // determine a winner
+            // if player has 3 in a row, 3 in column, or 3 diagonal
+            // header at top add winner x or o
+            // empty squares in grid should not react to clicks
+        // if all squares have symbol and no winner then tie
+            // header at top will be winner none
+
+    //plan - game status
+        // querySelectorAll for all board divs
+        // loop
+        // [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
 
 });
