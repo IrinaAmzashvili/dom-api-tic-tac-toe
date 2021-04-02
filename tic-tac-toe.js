@@ -50,9 +50,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
   //plan - game status
 
   // on a click event
-  // set a variable to equal its id at that position
-  // event.target.id.split('-')
-  // splice the array and update the value in array at the event.target with x or o
   // create conditional looking for if rows, columns, or diagonals are matching
   // if matching
   // set inner HTML to 'Winner! (x or o)'
@@ -65,23 +62,58 @@ window.addEventListener("DOMContentLoaded", (event) => {
   // add event listener listening for click on board
   // don't append image or alternate turns
   board.addEventListener("click", (event) => {
-    // if square is already occupied
-    if (!event.target.src) {
-      addImg(event);
-    }
-    // set a variable to equal its id at that position
-    let boardPos = event.target.id
-    let eventClick = boardPos.split('-')
-    let position = eventClick[1];
+      // if square is already occupied
+      if (!event.target.src) {
+          addImg(event);
+        }
+        // set a variable to equal its id at that position
+        let boardPos = event.target.id
+        // event.target.id.split('-')
+        let eventClick = boardPos.split('-')
+        let position = eventClick[1];
 
-    // since function addImg is invoked above
-    // the function is changing player value before we get to this conditional
-    // so our x and o values are inverted
-    if (player === 1) {
-        boardArray.splice(position, 1, 'o');
-    } else {
-        boardArray.splice(position, 1, 'x');
+        // since function addImg is invoked above
+        // the function is changing player value before we get to this conditional
+        // so our x and o values are inverted
+        if (player === 1) {
+            // splice the array and update the value in array at the event.target with x or o
+            boardArray.splice(position, 1, 'o');
+        } else {
+            boardArray.splice(position, 1, 'x');
+        }
+
+        findWinner()
+    });
+
+    function findWinner() {
+        // find winner in rows
+        if(boardArray[0] === boardArray[1] && boardArray[1] === boardArray[2] && boardArray[2] !== '') {
+            header.innerHTML = `The winner is.....${boardArray[0]}`
+
+        } else if(boardArray[3] === boardArray[4] && boardArray[4] === boardArray[5] && boardArray[5] !== '') {
+            header.innerHTML = `The winner is.....${boardArray[3]}`
+
+        } else if(boardArray[6] === boardArray[7] && boardArray[7] === boardArray[8] && boardArray[8] !== '') {
+            header.innerHTML = `The winner is.....${boardArray[6]}`
+
+        // find winner in columns
+        } else if(boardArray[0] === boardArray[3] && boardArray[3] === boardArray[6] && boardArray[6] !== '') {
+            header.innerHTML = `The winner is.....${boardArray[0]}`
+
+        } else if(boardArray[1] === boardArray[4] && boardArray[4] === boardArray[7] && boardArray[7] !== '') {
+            header.innerHTML = `The winner is.....${boardArray[1]}`
+
+        } else if(boardArray[2] === boardArray[5] && boardArray[5] === boardArray[8] && boardArray[8] !== '') {
+            header.innerHTML = `The winner is.....${boardArray[2]}`
+
+        // find winner in diagonals
+        } else if(boardArray[0] === boardArray[4] && boardArray[4] === boardArray[8] && boardArray[8] !== '') {
+            header.innerHTML = `The winner is.....${boardArray[0]}`
+
+        } else if(boardArray[2] === boardArray[4] && boardArray[4] === boardArray[6] && boardArray[6] !== '') {
+            header.innerHTML = `The winner is.....${boardArray[2]}`
+        }
+        board.setAttribute('disabled', true)
     }
-    console.log(boardArray)
-  });
+
 });
